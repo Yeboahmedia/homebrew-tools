@@ -1,13 +1,10 @@
-# typed: false
-# frozen_string_literal: true
-
 class PullApk < Formula
   desc "Pull and optionally decompile/view Android APKs from a connected device"
   homepage "https://github.com/Yeboahmedia/pull_android_apks"
-  url "https://github.com/Yeboahmedia/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "6e27cea87522659d8642d9667ef6b34e47c2d88b5b94aae10eb08d4bdb792d1a"
+  url "https://github.com/Yeboahmedia/pull_android_apks/archive/refs/tags/v0.3.2.tar.gz"
+  sha256 "448c048d63ae22cc4dd1de1f12aa47655e9ab85b2fac4424ec555ef93014d020"
   license "MIT"
-  version "0.1.0"
+  version "0.3.2"
 
   def install
     bin.install "bin/pull-apk"
@@ -18,7 +15,7 @@ class PullApk < Formula
 
   def caveats
     <<~EOS
-      Requires:
+      Requires (not installed by this formula):
         - adb (Android platform tools)
         - apktool (only if you use --decompile)
         - jadx-gui (only if you use --jadx)
@@ -31,6 +28,6 @@ class PullApk < Formula
   test do
     output = shell_output("#{bin}/pull-apk 2>&1", 1)
     assert_match "Usage: pull_apk", output
-    assert_match "pull_apk 0.1.0", shell_output("#{bin}/pull-apk --version")
+    assert_match "pull_apk", shell_output("#{bin}/pull-apk --version")
   end
 end
